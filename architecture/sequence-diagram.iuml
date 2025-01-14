@@ -1,0 +1,13 @@
+@startuml
+User -> TerminalController: executeCommand1
+TerminalController -> CommandExecutorService: executePowerShellCommand
+
+CommandExecutorService -> CommandEntry: <<create>>
+CommandExecutorService <-- CommandEntry: Response
+
+CommandExecutorService -> CommandRepository: insertCommand
+CommandExecutorService <-- CommandRepository: Response
+
+TerminalController <-- CommandExecutorService: Response
+User <-- TerminalController: User received output
+@enduml

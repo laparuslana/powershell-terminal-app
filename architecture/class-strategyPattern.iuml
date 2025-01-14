@@ -1,0 +1,24 @@
+@startuml
+interface WindowSize {
+    void setWindowSize(Stage stage, double width, double height)
+}
+
+
+class MinimizeWindowSize implements WindowSize {
+    void setWindowSize(Stage stage, double width, double height)
+}
+
+class MaximizeWindowSize implements WindowSize {
+    void setWindowSize(Stage stage, double width, double height)
+}
+
+class DefaultWindowSize implements WindowSize {
+    void setWindowSize(Stage stage, double width, double height)
+}
+
+class TerminalController {
+changeWindowSize(ActionEvent event)
+}
+
+TerminalController o- WindowSize
+@enduml

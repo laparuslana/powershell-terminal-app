@@ -1,0 +1,84 @@
+@startuml
+interface CommandRepository {
+    void insertCommand(CommandEntry commandEntry) 
+    List<CommandEntry> getCommandHistory()
+    void clearCommandHistory()
+}
+
+class CommandRepositoryImpl {
+  connection: Connection
+  insertCommand(CommandEntry)
+  getCommandHistory()
+  clearCommandHistory()
+}
+
+class CommandRepositoryImpl implements CommandRepository
+
+
+class WindowsManager {
+{static} createNewWindow()
+{static} setBackgroundColor(Parent root, String color)
+{static} setWindowSize(Stage stage, double width, double height)
+{static} setSyntaxColor(TextArea terminalTextArea, String hexColor)
+}
+
+class CommandExecutorService {
+commandRepository: CommandRepository
+executePowerShellCommand(String command)
+}
+
+CommandExecutorService "1" *-- "1" CommandRepository
+
+class DatabaseManager {
+connection: Connection
+closeConnection()
+getConnection()
+}
+
+class CommandEntry {
+description: String
+commandText: String
+executionTime: Timestamp
+getDesctiption()
+getCommandText()
+getExecutionTime()
+setDescription(String)
+setCommandText(String)
+setExecutionTime(Timestamp)
+}
+
+skinparam groupInheritance 2
+
+CommandEntry <.. CommandRepositoryImpl
+CommandEntry <.. CommandExecutorService
+
+
+class TerminalApplication {
+start(Stage primaryStage)
+main(String[] args)
+}
+
+class TerminalController {
+commandRepository: CommandRepository
+commandExecuterService: CommandExecutorService
+commandTextField1: TextField
+commandTextField2: TextField
+terminalTextArea1: TextArea
+terminalTextArea2: TextArea
+splitWindows(ActionEvent event)
+returnToSingleWindow(ActionEvent event)
+changeWindowSize(ActionEvent event)
+changeBackgroundColor(ActionEvent event)
+executeCommand1()
+executeCommand2()
+createNewWindow()
+showCommandHistory()
+changeSyntaxColor()
+}
+
+TerminalController ..> DatabaseManager
+TerminalController ..> CommandRepositoryImpl
+TerminalController ..> CommandExecutorService
+TerminalController "1" *-- "1" CommandExecutorService
+TerminalController "1" *-- "1" CommandRepository
+@enduml

@@ -1,0 +1,18 @@
+@startuml
+abstract class Syntax {
+void highlightSyntax()
+String[] splitOutput()
+void displayText()
+void highlight()
+
+}
+
+skinparam groupInheritance 2
+class KeywordSyntax extends Syntax {
+void highlight()
+}
+
+class PathSyntax extends Syntax {
+void highlight()
+}
+@enduml

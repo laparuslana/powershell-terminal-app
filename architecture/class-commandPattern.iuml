@@ -1,0 +1,71 @@
+@startuml
+interface Command {
+    void execute()
+    String getResult()
+}
+
+class PowerShellCommand {
+    executorService: CommandExecutorService
+    command: String
+    result: String
+
+    execute()
+    getResult()
+}
+class PowerShellCommand implements Command
+
+class ScriptFileCommand {
+    executorService: CommandExecutorService
+    scriptFilePath: String
+    result: String
+
+    execute()
+    getResult()
+}
+class ScriptFileCommand implements Command
+
+
+class CommandInvoker {
+    execute(Command command)
+}
+CommandInvoker o- Command
+
+class CommandExecutorService {
+    commandRepository: CommandRepository
+    result: String
+    commandLogger: CommandLogger
+
+    executeScriptFile(String scriptFileName)
+    executePowershellCommand(String command)
+    getResult()
+}
+
+skinparam groupInheritance 2
+
+CommandExecutorService "1" *-- "1" ScriptFileCommand
+CommandExecutorService "1" *-- "1" PowerShellCommand
+
+class CommandLogger {
+    commandRepository: CommandRepository
+    logCommandToDatabase(String command, String description)
+}
+
+CommandExecutorService ..> CommandLogger
+
+class TerminalController {
+commandExecuterService: CommandExecutorService
+commandInvoker: CommandInvoker
+commandTextField1: TextField
+commandTextField2: TextField
+terminalTextArea1: TextArea
+terminalTextArea2: TextArea
+executeCommand1()
+executeCommand2()
+executeLogic(String commandText, TextArea terminalTextArea)
+}
+
+TerminalController ..> PowerShellCommand
+TerminalController ..> ScriptFileCommand
+
+TerminalController "1" *-- "1" CommandExecutorService
+@enduml

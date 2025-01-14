@@ -1,0 +1,16 @@
+@startuml
+left to right direction
+actor "User" as fc
+rectangle Terminal {
+  usecase "Manage windows" as UC1
+  usecase "Change window parameters" as UC2
+  usecase "Execute commands" as UC3
+usecase "View command history" as UC4
+usecase "Create new window" as UC5
+}
+fc --> UC1
+fc --> UC2
+fc --> UC3
+fc --> UC4
+UC1 .> UC5 : include
+@enduml

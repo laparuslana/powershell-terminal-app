@@ -1,0 +1,36 @@
+@startuml
+<style>
+componentDiagram {
+  BackGroundColor white
+  LineThickness 1
+  LineColor black
+}
+</style>
+
+skinparam linetype ortho
+
+node "User's PC (Windows 5.1+)" as userComputer <<device>> {
+}
+
+cloud "Java Virtual Machine" as jvm {
+}
+
+node "JavaFX Application" as javafxApp {
+  artifact TerminalApp.jar
+  artifact mysqlconnectorj.jar
+}
+
+node "DataBase" as database {
+  database MySQLDataBase
+}
+
+cloud "XAMPP" as xamppServer {
+  [MySQL Server]
+
+}
+
+userComputer --> jvm: Runs
+jvm --> javafxApp: Loads
+javafxApp --> database
+javafxApp --> xamppServer : HTTP/HTTPS
+@enduml

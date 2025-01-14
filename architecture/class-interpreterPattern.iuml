@@ -1,0 +1,37 @@
+@startuml
+abstract class AbstractFormat {
+    +execute(format: Format)
+}
+
+
+class DayFormat extends AbstractFormat{
+    +execute(format: Format)
+}
+
+class MonthFormat extends AbstractFormat{
+    +execute(format: Format)
+}
+
+class YearFormat extends AbstractFormat{
+    +execute(format: Format)
+}
+
+class Format {
+    +getFormat(): String
+    +setFormat(format: String)
+    +getDate(): Date
+    +setDate(date: Date)
+}
+
+class DateFormatInterpreter {
+    +interpretAndDisplay(commandText: String)
+    -getFormatOrder(format: Format): ArrayList<AbstractFormat>
+}
+
+DateFormatInterpreter --> Format
+DateFormatInterpreter --> AbstractFormat
+
+AbstractFormat --o DayFormat
+AbstractFormat --o MonthFormat
+AbstractFormat --o YearFormat
+@enduml

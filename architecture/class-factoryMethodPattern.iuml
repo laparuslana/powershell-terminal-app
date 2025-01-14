@@ -1,0 +1,38 @@
+@startuml
+interface BackgroundScheme {
+    void applyBackground(Parent root)
+}
+
+class DarkTheme implements BackgroundScheme {
+   void applyBackground(Parent root)
+}
+
+class LightTheme implements BackgroundScheme {
+    void applyBackground(Parent root)
+}
+
+class HighContrastTheme implements BackgroundScheme {
+   void applyBackground(Parent root)
+}
+
+class BackgroundSchemeFactory {
+     BackgroundScheme createScheme()
+}
+
+class DarkThemeFactory implements BackgroundSchemeFactory {
+    BackgroundScheme createScheme()
+}
+
+class LightThemeFactory implements BackgroundSchemeFactory {
+    BackgroundScheme createScheme()
+}
+
+class HighContrastThemeFactory implements BackgroundSchemeFactory {
+    BackgroundScheme createScheme()
+}
+
+skinparam groupInheritance 3
+DarkThemeFactory ..> DarkTheme
+LightThemeFactory ..> LightTheme
+HighContrastThemeFactory ..> HighContrastTheme
+@enduml

@@ -1,0 +1,35 @@
+@startuml
+skinparam BackgroundColor transparent
+
+rectangle "JavaFX Application (TerminalApp.jar)" as javafxApp {
+   portin " " as p
+
+   component TerminalController [
+    "TerminalController"
+    ]
+    component "DatabaseAccess" as db 
+    portout " " as p2
+   
+   component View [
+   FXML files
+   ]
+
+   component Model [
+   Model
+   ]
+}
+component "XAMPP server" as server
+
+rectangle "MySQL Database" as database {
+  [Data Tables]
+}
+
+
+p -[dotted]-> TerminalController
+p -[dotted]-> Model
+p -[dotted]-> View
+TerminalController -(0-  db 
+db --[plain]> p2
+p2 --(0-  server
+server --(0- database
+@enduml

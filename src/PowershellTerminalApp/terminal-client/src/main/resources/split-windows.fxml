@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.terminal.RemoteController">
+    <VBox>
+        <SplitPane dividerPositions="0.6219919786096255" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="600.0" prefWidth="800.0">
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                <VBox alignment="CENTER" layoutY="48.0" prefHeight="415.0" prefWidth="799.0" spacing="10.0" AnchorPane.bottomAnchor="-93.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="48.0">
+                    <TextField fx:id="commandTextField1" prefHeight="34.0" prefWidth="799.0" promptText="Enter your command..." />
+                    <ScrollPane prefHeight="118.0" prefWidth="799.0">
+                        <TextFlow fx:id="textFlow1" prefHeight="796.0" prefWidth="90.0" />
+                    </ScrollPane>
+                    <Button onAction="#executeCommand1" text="Execute" />
+                </VBox>
+            </AnchorPane>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="234.0" prefWidth="799.0">
+                <VBox alignment="CENTER" prefHeight="223.0" prefWidth="799.0" spacing="10.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                    <TextField fx:id="commandTextField2" prefHeight="30.0" prefWidth="792.0" promptText="Enter your command..." />
+                    <ScrollPane>
+                        <TextFlow fx:id="textFlow2" prefHeight="799.0" prefWidth="102.0" />
+                    </ScrollPane>
+                    <Button onAction="#executeCommand2" text="Execute" />
+                </VBox>
+            </AnchorPane>
+        </SplitPane>
+    </VBox>
+   <Label alignment="CENTER" prefHeight="18.0" prefWidth="799.0" text="Split windows">
+      <font>
+         <Font size="18.0" />
+      </font>
+   </Label>
+   <ButtonBar layoutX="210.0" prefHeight="131.0" prefWidth="478.0">
+     <buttons>
+         <Button layoutX="135.0" layoutY="17.0" mnemonicParsing="false" onAction="#returnToSingleWindow" text="Return to Single Window" />
+         <Button onAction="#createNewWindow" text="Create New Window" />
+         <Button layoutX="423.0" layoutY="62.0" mnemonicParsing="false" onAction="#commandHistory" prefHeight="26.0" text="History" />
+     </buttons>
+   </ButtonBar>
+</AnchorPane>
